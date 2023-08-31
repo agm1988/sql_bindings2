@@ -5,11 +5,11 @@ require 'active_record'
 # Class for work with SQL query.
 # You can use native SQL with bindings as hash.
 # Auto converting JSON fields to hash.
-class ActiveSqlBindings
+class SqlBindings
   class << self
     # Create sql query with hash named bindings
     #
-    # Example: ActiveSqlBindings.execute('SELECT name FROM test WHERE id = :id', id: id)
+    # Example: SqlBindings.execute('SELECT name FROM test WHERE id = :id', id: id)
     #
     # @param [String] sql SQL query
     # @param [Hash] bind bindings data for query

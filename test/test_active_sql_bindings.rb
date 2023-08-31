@@ -1,8 +1,8 @@
 require 'sqlite3'
 require 'minitest/autorun'
-require 'active_sql_bindings'
+require 'sql_bindings'
 
-class ActiveSqlBindingsTest < Minitest::Test
+class SqlBindingsTest < Minitest::Test
   def test_execute
     ActiveRecord::Base.establish_connection(
       adapter: 'sqlite3',
@@ -12,11 +12,11 @@ class ActiveSqlBindingsTest < Minitest::Test
     id = 1
     name = 'test'
 
-    ActiveSqlBindings.execute('CREATE TABLE IF NOT EXISTS test (id INTEGER, name TEXT)')
+    SqlBindings.execute('CREATE TABLE IF NOT EXISTS test (id INTEGER, name TEXT)')
 
-    ActiveSqlBindings.execute('INSERT INTO test (id, name) VALUES (:id, :name)', id: id, name: name)
+    SqlBindings.execute('INSERT INTO test (id, name) VALUES (:id, :name)', id: id, name: name)
 
-    query = ActiveSqlBindings.execute('SELECT name FROM test WHERE id = :id', id: id)
+    query = SqlBindings.execute('SELECT name FROM test WHERE id = :id', id: id)
 
     assert_equal(name, query.first[:name])
 
